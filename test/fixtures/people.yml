@@ -1,0 +1,127 @@
+# == Schema Information
+#
+# Table name: people
+#
+#  id                           :integer       not null, primary key
+#  legacy_id                    :integer       
+#  family_id                    :integer       
+#  sequence                     :integer       
+#  gender                       :string(6)     
+#  first_name                   :string(255)   
+#  last_name                    :string(255)   
+#  suffix                       :string(25)    
+#  mobile_phone                 :string(25)    
+#  work_phone                   :string(25)    
+#  fax                          :string(25)    
+#  birthday                     :datetime      
+#  email                        :string(255)   
+#  email_changed                :boolean       
+#  website                      :string(255)   
+#  classes                      :string(255)   
+#  shepherd                     :string(255)   
+#  mail_group                   :string(1)     
+#  encrypted_password           :string(100)   
+#  business_name                :string(100)   
+#  business_description         :text          
+#  business_phone               :string(25)    
+#  business_email               :string(255)   
+#  business_website             :string(255)   
+#  activities                   :text          
+#  interests                    :text          
+#  music                        :text          
+#  tv_shows                     :text          
+#  movies                       :text          
+#  books                        :text          
+#  quotes                       :text          
+#  about                        :text          
+#  testimony                    :text          
+#  share_mobile_phone           :boolean       
+#  share_work_phone             :boolean       
+#  share_fax                    :boolean       
+#  share_email                  :boolean       
+#  share_birthday               :boolean       
+#  anniversary                  :datetime      
+#  updated_at                   :datetime      
+#  alternate_email              :string(255)   
+#  email_bounces                :integer       default(0)
+#  business_category            :string(100)   
+#  get_wall_email               :boolean       default(TRUE)
+#  account_frozen               :boolean       
+#  wall_enabled                 :boolean       
+#  messages_enabled             :boolean       default(TRUE)
+#  business_address             :string(255)   
+#  flags                        :string(255)   
+#  visible                      :boolean       default(TRUE)
+#  parental_consent             :string(255)   
+#  admin_id                     :integer       
+#  friends_enabled              :boolean       default(TRUE)
+#  member                       :boolean       
+#  staff                        :boolean       
+#  elder                        :boolean       
+#  deacon                       :boolean       
+#  can_sign_in                  :boolean       
+#  visible_to_everyone          :boolean       
+#  visible_on_printed_directory :boolean       
+#  full_access                  :boolean       
+#  legacy_family_id             :integer       bla
+#  feed_code                    :string(50)    
+#  share_activity               :boolean       
+#  site_id                      :integer       
+#  twitter_account              :string(100)   
+#  api_key                      :string(50)    
+#  salt                         :string(50)    
+#  deleted                      :boolean       
+#  child                        :boolean       
+#  custom_type                  :string(100)   
+#  custom_fields                :text          
+#
+
+doug:
+  site_id: 1
+  id: 1
+  sequence: 1
+  family_id: 1
+  gender: Male
+  first_name: Doug
+  last_name: Borko
+  mobile_phone: 7327425776
+  birthday: 1947-07-15
+  anniversary: 2005-04-08
+  email: doug@flasailor.com
+  encrypted_password: ec30317d2d9133b897cfac6718680f60a0110cec # secret
+  mail_group: M
+  wall_enabled: true
+  member: true
+  can_sign_in: true
+  visible_to_everyone: true
+  visible_on_printed_directory: true
+  full_access: true
+  child: false
+  feed_code: bla
+  api_key: dafH2KIiAcnLEr5JxjmX2oveuczq0R6u7Ijd329DtjatgdYcKp
+  salt: 0vrXxHlAjAY1w1frfCBYwcbHUHeOBcHlSn8VVXeSg9tWZfjYbq
+
+mike:
+  site_id: 1
+  id: 2
+  sequence: 1
+  family_id: 2
+  gender: Male
+  first_name: Mike
+  last_name: Smith
+  mobile_phone: 7325551212
+  birthday: 1967-07-15
+  anniversary: 2005-06-08
+  email: mike@smith.com
+  encrypted_password: ec30317d2d9133b897cfac6718680f60a0110cec # secret
+  mail_group: M
+  wall_enabled: true
+  member: true
+  can_sign_in: true
+  visible_to_everyone: true
+  visible_on_printed_directory: true
+  full_access: true
+  child: false
+  feed_code: ext
+  api_key: dafH2KIiAcnLEr5JxjmX2oveuczq0R6u7Ijd329DtjatgdYcKp
+  salt: 0vrXxHlAjAY1w1frfCBYwcbHUHeOBcHlSn8VVXeSg9tWZfjYbq

@@ -1,0 +1,481 @@
+--- 
+appearance_publictheme: 
+  name: Public Theme
+  section: Appearance
+  format: string
+  value: imarina
+  description: Name of selected theme (from themes/ directory) for the public CMS site.
+  site_id: 1
+formats_phone: 
+  name: Phone
+  section: Formats
+  format: string
+  value: (ddd) ddd-dddd
+  description: Format for displaying phone numbers (landlines). Use 'd' for digits.
+  site_id: 1
+privacy_shareemailbydefault: 
+  name: Share Email by Default
+  section: Privacy
+  format: boolean
+  value: false
+  description: If enabled, new users will have their email address shared with other site members.
+  site_id: 1
+contact_sendupdatesto: 
+  name: Send Updates To
+  section: Contact
+  format: string
+  value: 
+  description: Email sent when someone updates their profile (can be blank for no email)
+  site_id: 1
+services_yahoo: 
+  name: Yahoo
+  section: Services
+  format: string
+  value: 
+  global: true
+  description: Your Yahoo API key - https://developer.yahoo.com/wsregapp/index.php
+features_ssl: 
+  name: SSL
+  section: Features
+  format: boolean
+  value: false
+  global: true
+  description: If you have SSL setup, you may turn on this feature, which will make the login page encrypted. If not, some advanced JavaScript hashing is enabled to make sure the users' passwords aren't being sent in plaintext.
+contact_churchaddress: 
+  name: Church Address
+  section: Contact
+  format: string
+  value: 8144 Fiesta Street Brooksville,FL 34613
+  description: Visible on Terms of Use
+  site_id: 1
+features_bannermessage: 
+  name: Banner Message
+  section: Features
+  format: string
+  value: 
+  description: Message to display across top of all pages on site (HTML), like an alert
+  site_id: 1
+system_timezone: 
+  name: Time Zone
+  section: System
+  format: string
+  value: Central Time (US & Canada)
+  description: Set to properly display dates and times on the site.
+  site_id: 1
+contact_sendemailchangesto: 
+  name: Send Email Changes To
+  section: Contact
+  format: string
+  value: admin@imarina.net
+  description: Email sent when someone changes their email address (can be blank for no email)
+  site_id: 1
+formats_time: 
+  name: Time
+  section: Formats
+  format: string
+  value: "%I:%M %p"
+  description: Format for displaying time.
+  site_id: 1
+privacy_sharemobilephonebydefault: 
+  name: Share Mobile Phone by Default
+  section: Privacy
+  format: boolean
+  value: false
+  description: If enabled, new users will have their mobile phones shared with other site members.
+  site_id: 1
+privacy_shareanniversarybydefault: 
+  name: Share Anniversary by Default
+  section: Privacy
+  format: boolean
+  value: true
+  description: If enabled, new users will have their anniversary shared with other site members.
+  site_id: 1
+contact_techsupportemail: 
+  name: Tech Support Email
+  section: Contact
+  format: string
+  value: tech@imarina.net
+  global: true
+  description: Email to contact for technical help with the site.
+name_site: 
+  name: Site
+  section: Name
+  format: string
+  value: Imarina dot Net
+  description: The name of the member portion of this website
+  site_id: 1
+features_blog: 
+  name: Blog
+  section: Features
+  format: boolean
+  value: true
+  description: Enable Personal blog.
+  site_id: 1
+contact_churchofficephone: 
+  name: Church Office Phone
+  section: Contact
+  format: string
+  value: 
+  description: Phone number for the church office
+  site_id: 1
+formats_datewithoutyear: 
+  name: Date Without Year
+  section: Formats
+  format: string
+  value: "%m/%d"
+  description: Format for displaying date without a year, e.g. birthdays.
+  site_id: 1
+privacy_sharebirthdaybydefault: 
+  name: Share Birthday by Default
+  section: Privacy
+  format: boolean
+  value: true
+  description: If enabled, new users will have their birthday shared with other site members.
+  site_id: 1
+url_visitor: 
+  name: Visitor
+  section: URL
+  format: string
+  value: http://imarina.org
+  description: URL for main website (visitors will be pointed here if they happen across the member site.)
+  site_id: 1
+system_suffixes: 
+  name: Suffixes
+  section: System
+  format: list
+  value: |
+    --- 
+    - Jr.
+    - Sr.
+    - II
+    - III
+
+  description: ""
+  site_id: 1
+formats_fulldateandtime: 
+  name: Full Date and Time
+  section: Formats
+  format: string
+  value: "%m/%d/%Y %I:%M %p"
+  description: Format for displaying date and time.
+  site_id: 1
+features_editlegacyids: 
+  name: Edit Legacy Ids
+  section: Features
+  format: boolean
+  value: false
+  global: true
+  description: If enabled, will allow admin access to manually modify Family and Person legacy ids.
+url_news: 
+  name: News
+  section: URL
+  format: string
+  value: 
+  description: URL for church news (people will be pointed here for news)
+  site_id: 1
+features_friends: 
+  name: Friends
+  section: Features
+  format: boolean
+  value: true
+  description: Enable MySpace-style mutual friendships (confirmed via email)
+  site_id: 1
+contact_bugnotificationemail: 
+  name: Bug Notification Email
+  section: Contact
+  format: string
+  value: tech@imarina.net
+  global: true
+  description: Email address to send bug reports to
+features_service: 
+  name: Service
+  section: Features
+  format: boolean
+  value: false
+  description: If enabled, admin users can track indviduals' service in areas of the community.
+  site_id: 1
+features_contentmanagementsystem: 
+  name: Content Management System
+  section: Features
+  format: boolean
+  value: true
+  description: Enable "Pages" - Use OneBody to host your website.
+  site_id: 1
+contact_churchemail: 
+  name: Church Email
+  section: Contact
+  format: string
+  value: info@imarina.net
+  description: Visible in some places on site
+  site_id: 1
+features_custompersonfields: 
+  name: Custom Person Fields
+  section: Features
+  format: list
+  value: 
+  description: Add custom field names, one per line. Including the word "date" (or "Date") makes a date field. Append an asterisk (*) to make the field visible and editable by users.
+  site_id: 1
+name_slogan: 
+  name: Slogan
+  section: Name
+  format: string
+  value: a social networking site for sailors/boaters
+  description: Slogan displayed at top of every page.
+  site_id: 1
+appearance_logo: 
+  name: Logo
+  section: Appearance
+  format: string
+  value: logo.png
+  description: Filename of logo (in public/images/ directory).
+  site_id: 1
+  hidden: true
+features_notes: 
+  name: Notes
+  section: Features
+  format: boolean
+  value: true
+  description: Enable Notes sharing (blog).
+  site_id: 1
+features_groups: 
+  name: Groups
+  section: Features
+  format: boolean
+  value: true
+  description: Enable Groups.
+  site_id: 1
+url_newsrss: 
+  name: News RSS
+  section: URL
+  format: string
+  value: 
+  description: URL for church news RSS feed (news feed will be polled periodically and headlines displayed across the top of the page)
+  site_id: 1
+appearance_showsubheading: 
+  name: Show Subheading
+  section: Appearance
+  format: boolean
+  value: true
+  description: Under the site title/logo, display the site address and slogan.
+  site_id: 1
+features_recipes: 
+  name: Recipes
+  section: Features
+  format: boolean
+  value: true
+  description: Enable Recipe sharing.
+  site_id: 1
+features_multisite: 
+  name: Multisite
+  section: Features
+  format: boolean
+  value: false
+  global: true
+  description: When enabled, this instance can handle multiple sites, based on domain name.
+privacy_shareaddressbydefault: 
+  name: Share Address by Default
+  section: Privacy
+  format: boolean
+  value: false
+  description: If enabled, new users will have their home address shared with other site members.
+  site_id: 1
+contact_birthdayverificationemail: 
+  name: Birthday Verification Email
+  section: Contact
+  format: string
+  value: admin@imarina.net
+  description: Email sent when someone requests verification via birthday (shouldn't be blank)
+  site_id: 1
+name_church: 
+  name: Church
+  section: Name
+  format: string
+  value: Imarina dot Net
+  description: The name of the church
+  site_id: 1
+services_analytics: 
+  name: Analytics
+  section: Services
+  format: string
+  value: 
+  global: true
+  description: If you use Google Analytics or some other JavaScript-based stats service, put the code here. It will be inserted at the bottom of every page.
+url_site: 
+  name: Site
+  section: URL
+  format: string
+  value: http://imarina.net/
+  description: URL for this site (including the trailing slash please)
+  site_id: 1
+  hidden: true
+appearance_theme: 
+  name: Theme
+  section: Appearance
+  format: string
+  value: imarina
+  description: Name of selected theme (from themes/ directory).
+  site_id: 1
+features_testimony: 
+  name: Testimony
+  section: Features
+  format: boolean
+  value: false
+  description: Enable Testimonies.
+  site_id: 1
+features_prayers: 
+  name: Prayers
+  section: Features
+  format: boolean
+  value: false
+  description: Enable Prayer Requests.
+  site_id: 1
+privacy_relayallemail: 
+  name: Relay All Email
+  section: Privacy
+  format: boolean
+  value: true
+  description: If enabled, all email addresses are masked by relaying replies back through the site. If disabled, people who have their email address shared will have their address revealed in outgoing messages.
+  site_id: 1
+features_custompersontype: 
+  name: Custom Person Type
+  section: Features
+  format: boolean
+  value: false
+  description: If enabled, admins can specify a custom type along the lines of Elder, Deacon, etc.
+  site_id: 1
+privacy_shareworkphonebydefault: 
+  name: Share Work Phone by Default
+  section: Privacy
+  format: boolean
+  value: false
+  description: If enabled, new users will have their work phones shared with other site members.;
+  site_id: 1
+features_signupapprovalemail: 
+  name: Sign Up Approval Email
+  section: Features
+  format: string
+  value: 
+  description: Where to send pending sign up requests (must be admin; leave blank to auto-approve).
+  site_id: 1
+features_sidebargroupheading: 
+  name: Sidebar Group Heading
+  section: Features
+  format: string
+  value: Dockmates
+  description: Heading to show above people in mutual groups (see above setting)
+  site_id: 1
+privacy_sharefaxbydefault: 
+  name: Share Fax by Default
+  section: Privacy
+  format: boolean
+  value: false
+  description: If enabled, new users will have their fax shared with other site members.
+  site_id: 1
+features_sidebargroupcategory: 
+  name: Sidebar Group Category
+  section: Features
+  format: string
+  value: docks
+  description: People in mutual groups of this category will be displayed on the user's profile sidebar.
+  site_id: 1
+privacy_allowunencryptedlogins: 
+  name: Allow Unencrypted Logins
+  section: Privacy
+  format: boolean
+  value: true
+  description: Logins are secured with public/private RSA encryption using JavaScript. Check this box to allow fallback for mobile phones and other browsers that are having trouble signing in.
+  site_id: 1
+features_ots: 
+  name: ots
+  section: Features
+  format: boolean
+  value: false
+  description: Use to trigger custom or Off The Shelf Code.
+  site_id: 1
+formats_date: 
+  name: Date
+  section: Formats
+  format: string
+  value: "%m/%d/%Y"
+  description: Format for displaying date.
+  site_id: 1
+features_twitteraccount: 
+  name: Twitter Account
+  section: Features
+  format: string
+  value: 
+  description: If Twitter Integration is enabled, tell your users the account name here.
+  site_id: 1
+access_superadmins: 
+  name: Super Admins
+  section: Access
+  format: list
+  value: |
+    --- 
+    - doug@flasailor.com
+
+  description: Email addresses of people who are the super admins
+  site_id: 1
+features_updatesmustbeapproved: 
+  name: Updates Must Be Approved
+  section: Features
+  format: boolean
+  value: true
+  description: If enabled, all changes to a user's "basic" information (phone, address, etc.) will await approval from an admin before being applied.
+  site_id: 1
+features_verses: 
+  name: Verses
+  section: Features
+  format: boolean
+  value: false
+  description: Enable Verse sharing.
+  site_id: 1
+features_nonchurch: 
+  name: Non Church
+  section: Features
+  format: boolean
+  value: true
+  description: Use to screen out church specific content.
+  site_id: 1
+features_pictures: 
+  name: Pictures
+  section: Features
+  format: boolean
+  value: true
+  description: Enable Picture sharing.
+  site_id: 1
+features_publications: 
+  name: Publications
+  section: Features
+  format: boolean
+  value: true
+  description: Enable Publications.
+  site_id: 1
+features_signup: 
+  name: Sign Up
+  section: Features
+  format: boolean
+  value: true
+  description: Enable the ability for people to sign up for the site. Configure aproval email address below.
+  site_id: 1
+formats_mobilephone: 
+  name: Mobile Phone
+  section: Formats
+  format: string
+  value: (ddd) ddd-dddd
+  description: Format for displaying mobile phone numbers. Use 'd' for digits.
+  site_id: 1
+privacy_sharehomephonebydefault: 
+  name: Share Home Phone by Default
+  section: Privacy
+  format: boolean
+  value: false
+  description: If enabled, new users will have their home phone shared with other site members.
+  site_id: 1
+privacy_maxsigninattempts: 
+  name: Max Sign in Attempts
+  section: Privacy
+  format: string
+  value: 10
+  description: Maximum number of signin failures in a 15-minute period before account is locked out. (Account is automatically unlocked after 15 minutes.)
+  site_id: 1

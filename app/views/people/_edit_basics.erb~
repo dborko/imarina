@@ -1,0 +1,100 @@
+<% if flash[:send_verification_email] %>
+  <div id="notice" class="warning">
+    The user can now sign in.
+    <%= link_to 'Send verification email.', account_path(:email => @person.email), :method => 'post', :confirm => 'Are you sure?' %>
+  </div>
+<% end %>
+
+<% if @logged_in.admin?(:edit_profiles) %>
+  <p>
+    If your system is set up to synchronize its data with an external source
+    (a church managment system database perhaps), changes you make here may
+    be overwritten on the next sync.
+  </p>
+<% else %>
+  <% if Setting.get(:features, :updates_must_be_approved) %>
+    <p>
+      Changes to the details below must be <strong>reviewed by staff</strong>. To request changes,
+      enter the details below and click "Submit."
+    </p>
+  <% end %>
+  <p style="font-weight:bold;">
+    If you wish to remove something below in order to keep others from
+    seeing it, instead go to the <%= link_to 'Privacy', edit_person_privacy_path(@person) %> page
+    and hide it.
+  </p>
+<% end %>
+
+<%= render :partial => 'pending_updates' %>
+
+<% form_for @person do |form| %>
+  <%= form.error_messages %>
+  <%= form.hidden_field :family_id %>
+  <% if @logged_in.admin?(:edit_profiles) %>
+    <div style="width:250px;float:right;">
+      <fieldset>
+       <% if Setting.get(:features, :ots) %>
+	<legend>Person Type</legend>
+        <em>These do not control access &mdash; only appearance.</em><br/>
+        <%= form.check_box :member %> <%= form.label :member, nil, :class => 'inline' %><br/>
+        <%= form.check_box :staff %>  <%= form.label :staff,  nil, :class => 'inline' %><br/>
+        <%= form.check_box :elder %>  <%= form.label :elder,  nil, :class => 'inline' %><br/>
+        <%= form.check_box :deacon %> <%= form.label :deacon, nil, :class => 'inline' %>
+        <% end %>
+       
+        <% if Setting.get(:features, :custom_person_type) %>
+          <br/>
+          <%= form.label :custom_type, 'Custom Type:', :class => 'inline' %>
+          <%= form.text_field :custom_type, :size => 10 %><div class="autocomplete" id="person_custom_type_auto_complete"></div>
+          <script type="text/javascript">
+            new Autocompleter.Local('person_custom_type', 'person_custom_type_auto_complete', 7, {});
+          </script>
+        <% end %>
+      </fieldset>
+      <fieldset>
+        <legend>Visibility</legend>
+        <% unless @person.consent_or_13? %>
+          <em>This person is believed to be less than 13 years of age, and does not have parental consent.</em>
+          <br/>
+        <% end %>
+        <% content_tag :span, :style => @person.consent_or_13? ? nil : 'text-decoration:line-through;' do %>
+          <%= form.check_box :can_sign_in %>                  <%= form.label :can_sign_in,                  nil, :class => 'inline' %><br/>
+          <%= form.check_box :visible_to_everyone %>          <%= form.label :visible_to_everyone,          nil, :class => 'inline' %><br/>
+          <%= form.check_box :visible_on_printed_directory %> <%= form.label :visible_on_printed_directory, nil, :class => 'inline' %><br/>
+          <%= form.check_box :full_access %>                  <%= form.label :full_access,                  nil, :class => 'inline' %>
+        <% end %>
+      </fieldset>
+     <% if Setting.get(:features, :edit_legacy_ids) %> 
+      <fieldset>
+        <legend>Advanced</legend>
+        <%= form.label :legacy_id,        'Legacy/External ID' %>        <%= form.text_field :legacy_id, :size => 6 %>
+        <%= form.label :legacy_family_id, 'Family Legacy/External ID' %> <%= form.text_field :legacy_family_id, :size => 6 %>
+      </fieldset>
+     <% end %>
+    </div>
+  <% end %>
+  <%= hidden_field_tag :anchor, 'basics' %>
+  <%= form.label :first_name %>   <%= form.text_field :first_name %><br/>
+  <%= form.label :last_name %>    <%= form.text_field :last_name %><br/>
+  <%= form.label :suffix %>       <%= form.select :suffix, [nil]+Setting.get(:system, :suffixes) %><br/>
+  <%= form.label :gender %>       <%= form.select :gender, [nil, 'Male', 'Female'] %><br/>
+  <% if @logged_in.admin?(:edit_profiles) %>
+    <%= form.label :child %>      <%= form.check_box :child %><br/>  
+  <% end %>
+  <%= form.label :email %>        <%= form.text_field :email %><br/>
+  <%= form.label :mobile_phone %> <%= form.phone_field :mobile_phone %><br/>
+  <%= form.label :work_phone %>   <%= form.phone_field :work_phone %><br/>
+  <%= form.label :fax %>          <%= form.phone_field :fax %><br/>
+  <%= form.label :birthday %>     <%= form.date_field :birthday %><br/>
+  <%= form.label :anniversary %>  <%= form.date_field :anniversary %>
+  <%= render :partial => 'edit_custom_fields' %>
+  <% unless @person.new_record? %>
+    <% fields_for :family, @family do |family| %>
+      <%= render :partial => 'families/form_fields', :locals => {:form => family} %>
+    <% end %>
+  <% end %>
+  <p><%= submit_tag 'Submit' %></p>
+<% end %>
+
+<script type="text/javascript"> $('person_first_name').focus() </script>
+<%= calendar_date_select_includes 'silver' %>

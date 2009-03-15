@@ -1,0 +1,90 @@
+<% if @logged_in.admin?(:edit_profiles) %>
+  <% content_for :subnav do %>
+    <li><%= link_to 'Edit Family', edit_family_path(@family) %></li>
+    <li><%= link_to 'Delete Family', @family, :method => 'delete', :confirm => 'Are you sure? Clicking OK will delete this family and all the people in it.' %></li>
+  <% end %>
+<% end %>
+
+
+<% content_for :sidebar do %>
+  <% if @family.has_photo? %>
+    <%= render :partial => 'families/photo' %>
+  <% else %>
+
+     <% if Setting.get(:features, :ots) %>
+      <%= image_tag 'family.jpg', :alt => 'no family photo' %>
+     <% else %>
+      <%= image_tag 'boat.jpg', :alt => 'no boat photo' %>
+     <% end %>
+
+  <% end %>
+<% end %>
+
+
+
+<%= render :partial => 'map' %>
+
+<h1><%=h @family.name %>
+  <% if @logged_in.can_edit? @family %>
+    <%= link_to 'edit', edit_family_path(@family), :style => 'font-size:10pt;color:#999;text-decoration:none;' %>
+  <% end %>
+</h1>
+
+<p><%= format_phone @family.home_phone %></p>
+
+<p><%= @family.pretty_address %> <%= render :partial => 'map_link' %></p>
+
+<h2>People</h2>
+
+<ol id="people">
+  <% @people.each do |person| %>
+    <li class="family-member" id="person_<%= person.id %>">
+      <a href="<%= url_for person %>">
+        <%= render :partial => 'people/thumbnail', :locals => {:person => person} %>
+      </a>
+      <%= link_to h(person.name), person %>
+      <% unless person.visible? %>
+        <%= image_tag('lock.gif', :alt => 'Hidden Profile', :class => 'icon') %>
+      <% end %>
+      <%= image_tag('reorder.png', :alt => 'reorder family members', :class => 'handle icon') %>
+      <%= link_to '[edit]', edit_person_path(person), :class => 'discreet' %>
+      <%= link_to '[delete]', person, :confirm => 'Are you sure?', :method => :delete, :class => 'discreet' %>
+    </li>
+  <% end %>
+</ol>
+
+<p class="discreet">Drag the green arrows to reorder family members.</p>
+
+<% if @people.empty? %>
+  <p><em>No one in this family yet.</em></p>
+<% end %>
+
+<p>
+  <strong>Add Family Members:</strong><br/>
+  <%= link_to image_tag('add_small.gif', :alt => 'add new person', :class => 'icon') + ' New Person',
+    new_person_path(:family_id => @family) %>
+  <%= link_to_function image_tag('add_small.gif', :alt => 'add existing person', :class => 'icon') + ' Existing Person',
+    "Element.toggle('add_existing')" %>
+</p>
+  
+<% form_remote_tag :url => search_path, :html => {:id => 'add_existing', :style => 'display:none;'} do %>
+  <%= hidden_field_tag :select_person, true %>
+  <p>
+    <label for="add_person_name">Add an <em>existing</em> person to this family:</label>
+    <%= text_field_tag 'name', nil, :id => 'add_person_name' %>
+    <%= submit_tag 'Search by Name' %>
+  </p>
+<% end %>
+
+<div id="add_member" style="display:none;">
+  <% form_remote_tag :url => batch_people_path do %>
+    <%= hidden_field_tag :family_id, @family.id %>
+    <div id="results"></div>
+    <p class="very-strong">Adding a person to this family will <em>remove</em> them from their current family.</p>
+    <p><%= submit_tag 'Add Selected' %></p>
+  <% end %>
+</div>
+  
+<%= javascript_include_tag 'dragdrop.js' %>
+<%= sortable_element('people', :url => reorder_family_path(@family)) %>
+

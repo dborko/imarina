@@ -1,0 +1,303 @@
+<%= stylesheet_link_tag 'tabs' %>
+<%= javascript_include_tag 'tabs' %>
+<style type="text/css"> form { border:none; }</style>
+
+<p>
+  <strong>
+    <% if @logged_in.admin?(:edit_profiles) %>
+      <%= link_to h(@family.name), @family %>
+    <% else %>
+      <%=h @family.name %>
+    <% end %>
+    &middot; Edit:</strong>
+  <%= @family.visible_people.map { |p| link_to(p == @person ? "<strong>#{h(p.first_name)}</strong>" : h(p.first_name), edit_person_path(p)) }.join(' | ') %>
+</p>
+
+<p>
+  Please read our <%= link_to 'Privacy Policy', help_path('privacy_policy') %>
+  for details regarding the use of your personal information.
+</p>
+
+<% if @logged_in.admin?(:edit_profiles) and @person.account_frozen? %>
+  <p class="very-strong">This account is frozen. <%= @person.name %> cannot make changes to this profile or anyone else's until this account is unfrozen.</p>
+<% end %>
+
+<% content_for :subnav do %>
+  <li><%= link_to 'View Profile', person_path(@person) %></li>
+  <li><%= link_to 'Change Email/Password', edit_person_account_path(@person) %></li>
+  <li><%= link_to 'Privacy Settings', edit_person_privacy_path(@person, :anchor => "p#{@person.id}") %></li>
+ 
+   <% if Setting.get(:features, :ots) %>
+   <% if @person.can_sync_remotely? %>
+     <li><%= link_to 'Remote Accounts', person_remote_accounts_path(@person) %></li>
+   <% end %>
+   <% end %>
+
+  <% if @logged_in.admin?(:edit_profiles) and !me? %>
+    <li><%= link_to (@person.account_frozen? ? 'Unfreeze' : 'Freeze'), person_path(@person, :freeze => 'toggle'), :method => 'put', :confirm => 'Are you sure?' %></li>
+  <% end %>
+<% end %>
+
+<% if @person.account_frozen? and me? %>
+  <p class="attention">
+    Your account has been frozen.
+    You may not make changes to your account at this time.
+  </p>
+<% end %>
+
+<h2 class="tab" id="basics">Basics</h2>
+<div class="section">
+  <%= render :partial => 'edit_basics' %>
+</div>
+
+<h2 class="tab" id="picture">Pic</h2>
+<div class="section">
+  <p>
+    Upload a <strong>picture of <%= me? ? 'yourself' : h(@person.name) %></strong>.
+    Please only upload a <span class="very-strong">real photo</span> &mdash;
+    no graphics, clip-art, or fakes please.
+  </p>
+  <table><tr><td>
+  <%= render :partial => 'photo' %>
+  </td><td>
+  <%= photo_upload_for @person %>
+  </td></tr></table>
+</div>
+
+<% if Setting.get(:features, :ots) %>
+    <h2 class="tab" id="family-picture">Family Pic</h2>
+ <% else %>	
+    <h2 class="tab" id="family-picture">Boat Pic</h2>
+<% end %>
+
+
+<div class="section">
+ 
+<% if Setting.get(:features, :ots) %>
+  <p>
+    Upload a <strong>family picture</strong>.
+    Please only upload a <span class="very-strong">real photo</span> &mdash;
+    no graphics, clip-art, or fakes please.
+  </p>
+ <% else %>
+  <p>
+    Upload a <strong>picture of your boat</strong>.
+    Please only upload a <span class="very-strong">real photo</span> &mdash;
+    no graphics, clip-art, or fakes please.
+  </p>
+<% end %>
+  <table><tr><td>
+  <%= render :partial => 'families/photo' %>
+  </td><td>
+  <%= photo_upload_for @family %>
+  </td></tr></table>
+</div>
+
+<h2 class="tab" id="about">About</h2>
+<div class="section">
+  <% form_for @person do |form| %>
+    <%= form.error_messages %>
+    <%= hidden_field_tag :anchor, 'about' %>
+    <div>
+
+<% if Setting.get(:features, :testimony) %>
+      <label for="person_testimony">Testimony:</label>
+      Share your personal testimony &mdash; how you came to know
+      Jesus Christ and how he has changed your life.<br/>
+      <%= form.text_area :testimony, :rows => 15, :style => 'width:95%;' %><br/>
+<% end %>
+
+      <label for="person_about">About Me:</label>
+      Tell us about yourself. What's your personality like?
+      What would your best friend say about you?<br/>
+      <%= form.text_area :about, :rows => 6, :style => 'width:95%;' %><br/>
+      <label for="person_website">Website:</label>
+      <%= form.text_field :website %>
+    </div>
+    <p><input type="submit" value="Save Changes"/></p>
+  <% end %>
+</div>
+    
+<h2 class="tab" id="favorites">Favs</h2>
+<div class="section">
+  <% form_for @person do |form| %>
+    <%= hidden_field_tag :anchor, 'favorites' %>
+    <p style="font-style:italic;">Separate things with commas so the system can auto-link to other people with the same stuff.</p>
+    <div>
+    <label for="person_activities">Activities:</label>
+    <%= form.text_area :activities, :rows => 4 %>
+    <label for="person_interests">Interests:</label>
+    <%= form.text_area :interests, :rows => 4 %>
+    <label for="person_music">Music:</label>
+    <%= form.text_area :music, :rows => 4 %>
+    <label for="person_tv_shows">TV Shows:</label>
+    <%= form.text_area :tv_shows, :rows => 4 %>
+    <label for="person_movies">Movies:</label>
+    <%= form.text_area :movies, :rows => 4 %>
+    <label for="person_books">Books:</label>
+    <%= form.text_area :books, :rows => 4 %>
+    <label for="person_quotes">Quotes:</label>
+    <%= form.text_area :quotes, :rows => 4 %>
+    </div>
+    <p><input type="submit" value="Save Changes"/></p>
+  <% end %>
+</div>
+
+<!--
+<h2 class="tab" id="shares">Shares</h2>
+<div class="section">
+  <p>
+    You can share pictures, Bible verses, and recipes on
+    <%= Setting.get(:name, :site) %> from the <%= link_to 'Shares', :controller => 'shares' %>
+    tab. Anything you share there will appear on your profile.
+  </p>
+</div>
+-->
+
+<h2 class="tab" id="business">Business</h2>
+<div class="section">
+  <p>
+    If you wish to be listed in the <%= link_to 'Business Directory', search_path(:business => true) %>,
+    Enter your business name, description, and other details below.
+  </p>
+
+  <% form_for @person do |form| %>
+    <%= hidden_field_tag :anchor, 'business' %>
+    <div>
+      <label for="person_business_category">Business Category:</label>
+      <select name="person[business_category]" id="person_business_category" onchange="if(this.value=='!') custom_select_val(this, 'Enter the new category.')">
+        <option value=""></option>
+        <%= options_for_select @business_categories, @person.business_category %>
+        <option value="!">[new category]</option>
+      </select><br/>
+      <label for="person_business_name">Business Name:</label>
+      <%= form.text_field :business_name %><br/>
+      <label for="person_business_description">Description of Business:</label>
+      <%= form.text_area :business_description, :rows => 3 %><br/>
+      <label for="person_business_phone">Business Phone:</label>
+      <%= form.text_field :business_phone %><br/>
+      <label for="person_business_email">Business Email:</label>
+      <%= form.text_field :business_email %><br/>
+      <label for="person_business_website">Business Website:</label>
+      <%= form.text_field :business_website %><br/>
+      <label for="person_business_address">Business Address:</label>
+      <%= form.text_area :business_address, :rows => 2 %>
+    </div>
+  
+    <p><%= submit_tag 'Save Changes' %></p>
+  <% end %>
+</div>
+
+
+<% if Setting.get(:features, :service) and @logged_in.admin? %>
+  <h2 class="tab" id="service">Service</h2>
+  <div class="section">
+  	<%= render :partial => 'edit_services' %>
+  </div>
+<% end %>
+
+
+<h2 class="tab" id="email">Email</h2>
+<div class="section">
+  <div class="highlight">
+    <p>
+      <% if @person.email.to_s.any? %>
+        <%= @person == @logged_in ? 'Your' : @person.name_possessive %> email address (account login) is:<br/>
+        <span style="font-size:2em;"><%=h @person.email %></span>
+      <% else %>
+        <%= @person == @logged_in ? "You don't" : h(@person.name) + " doesn't" %>
+        have an email address in the system
+      <% end %>
+    </p>
+    <p><%= link_to 'Click here', edit_person_account_path(@person) %> to change this email address.</p>
+  </div>
+  
+  <h2>Wall Emails</h2>
+  <% form_for @person do |form| %>
+    <p>
+      <%= form.check_box :get_wall_email, :class => 'checkbox' %>
+      Send me an email when someone posts a message on my wall.<br/>
+      <%= submit_tag 'Save Changes' %>
+    </p>
+  <% end %>
+
+  <h2>Group Emails</h2>
+  <%= render :partial => 'groups/person_groups' %>
+
+  <h2>Alternate Email</h2>
+
+  <p>
+    If you have another email (perhaps a work address) you wish to
+    utilize to send email to groups, you may enter it here.
+    Please note:
+  </p>
+
+  <ul>
+    <li>This email address will not be visible to anyone except administrators.</li>
+    <li>You will not be able to use this address to sign into the site.</li>
+  </ul>
+
+  <% form_for @person do |form| %>
+    <%= hidden_field_tag :anchor, 'email' %>
+    <div>
+      <label for="person_alternate_email">Alternate Email:</label>
+      <%= form.text_field :alternate_email %><br/>
+      <%= submit_tag 'Save Changes' %>
+    </div>
+  <% end %>
+
+</div>
+
+<% if Site.current.twitter_enabled? %>
+  <h2 class="tab" id="twitter">Twitter</h2>
+  <div class="section">
+    <%= render :partial => 'twitter' %>
+  </div>
+<% end %>
+
+<% if @logged_in.admin?(:manage_access) %>
+  <h2 class="tab" id="access">Access</h2>
+  <div class="section">
+    <%= render :partial => 'access' %>
+  </div>
+<% end %>
+
+<% if @logged_in.admin?(:edit_profiles) %>
+  <h2 class="tab" id="delete">Delete</h2>
+  <div class="section">
+    <% form_for @person, :html => {:method => 'delete'} do |form| %>
+      <p>If your system is set up to synchronize its data with an external source
+      (a church managment system database perhaps), deleting this person may not
+      be permanent and they may reappear following the next sync.</p>
+      <p><%= form.submit "Delete #{@person.name}" %></p>
+    <% end %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+//<![CDATA[
+  set_up(); // tabs
+  changes = false;
+  $$('.section input').concat($$('.section textarea')).each(function(e){
+    e.onchange = function() { changes = true };
+    if(e.type == 'submit') e.onclick = function() { changes = false };
+  });
+  original_tab_click = tab_click;
+  tab_click = function(e) {
+    if(changes) {
+      changes = false;
+      if(confirm('Looks like you made a change to something on this tab. Be sure to save your changes before going to another tab. Click OK to save your changes first.')) {
+        sections[lastSection].getElementsByTagName('form')[0].submit();
+      } else {
+        original_tab_click(e);
+      }
+    } else {
+      original_tab_click(e);
+    }
+  };
+  set_handlers();
+  onbeforeunload = function() {
+    if(changes) return 'Looks like you made a change to something on this page. Be sure to save your changes before leaving.';
+  };
+//]]>
+</script>

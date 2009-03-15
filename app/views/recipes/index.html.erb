@@ -1,0 +1,22 @@
+<h1>Recipes</h1>
+
+<p>Share your favorite recipes with the <%= Setting.get(:name, :church) %> family.</p>
+
+<%= render :partial => 'shares/subnav' %>
+
+<% content_for :sidebar do %>
+  <h2>Tags</h2>
+  <div class="tag-cloud">
+    <% tag_cloud @tags, %w(size1 size2 size3 size4) do |tag, css_class| %>
+      <%= link_to tag.name, tag, :class => css_class %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @recipes.any? %>
+  <%= render :partial => 'list', :locals => {:recipes => @recipes} %>
+<% else %>
+  <p><em>No recipes yet!</em></p>
+<% end %>
+
+<p><%= link_to image_tag('add_small.gif', :alt => 'Add a recipe.', :class => 'icon') + ' New Recipe', new_recipe_path %></p>

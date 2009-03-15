@@ -1,0 +1,14 @@
+<div>
+  <% if @person.has_photo? %>
+    <%= link_to image_tag(medium_person_photo_path(@person, :m => @person.updated_at.to_s(:number)), :alt => h(@person.name)),
+      large_person_photo_path(@person) %>
+  <% elsif @family and @family.has_photo? %>
+    <%= render :partial => 'families/photo' %>
+  <% else %>
+    <%= render :partial => 'people/silhouette' %>
+    <% if me? and (params[:controller] == 'people' and params[:action] == 'show') %>
+      <br/>
+      <%= link_to image_tag('person_picture.gif', :alt => 'Upload your picture.', :class => 'icon') + ' Upload Your Picture', edit_person_path %>
+    <% end %>
+  <% end %>
+</div>

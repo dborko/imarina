@@ -1,0 +1,5 @@
+<li><%= link_to 'Browse',     search_path(:browse => true) %></li>
+<li><%= link_to 'Businesses', search_path(:business => true) %></li>
+<% if Setting.get(:features, :ots) %>
+<li><%= link_to 'Print',      printable_directory_path %></li>
+<% end %>

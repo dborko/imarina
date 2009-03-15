@@ -1,0 +1,26 @@
+<% if recipe.has_photo? %>
+  <%= link_to image_tag(tn_recipe_photo_path(recipe), :alt => recipe.title, :class => 'no-border'), recipe, :style => 'float:left;' %>
+<% end %>
+
+<div class="recipe-title">
+  <strong><%= link_to h(recipe.title), recipe %></strong>
+  <% unless @person %>
+    by
+    <% if recipe.person %>
+      <%= link_to h(recipe.person.name), person_path(recipe.person) %>
+    <% else %>
+      ???
+    <% end %>
+  <% end %>
+  <% if @person or recipe.admin? @logged_in %>
+    <%= link_to "[edit]", edit_recipe_path(:id => recipe), :class => 'discreet' %>
+    <%= link_to '[delete]', recipe, :method => 'delete', :confirm => 'Are you sure you want to delete this recipe?', :class => 'discreet' %>
+  <% end %>
+  <span class="discreet">
+    Tags: <%= render :partial => 'tags/tags_with_delete', :locals => {:object => recipe} %>
+  </span>
+</div>
+
+<div class="recipe-body">
+  <% truncate h(recipe.description), :length => 50, :omission => '...' %>
+</div>

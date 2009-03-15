@@ -1,0 +1,12 @@
+<div>
+  <% if @family.has_photo? %>
+    <%= link_to image_tag(medium_family_photo_path(@family, :m => @family.updated_at.to_s(:number)), :alt => h(@family.name)),
+      large_family_photo_path(@family, :back => request.request_uri) %>
+    <% elsif params[:action] == 'edit' %>
+       <% if Settings.get(:features, :ots) %>
+	<%= image_tag 'family.jpg', :alt => @family.name %>
+       <% else %>   
+         <%= image_tag 'boat.jpg' %>
+       <% end %>
+  <% end %>
+</div>

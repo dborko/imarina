@@ -1,0 +1,16 @@
+<div style="float:left;margin-right:5px;">
+  <a href="<%= person_url(comment.person) %>">
+    <%= render :partial => 'people/thumbnail', :locals => {:person => comment.person} %>
+  </a>
+</div>
+<%= link_to h(comment.person.name),comment.person %>
+<% if params[:controller] == 'shares' %>
+  commented on
+  <%= link_to h(on.title), comment.on %>
+<% end %>
+<%= comment.created_at.to_s %>
+<% if @logged_in.can_edit?(comment) %>
+  <%= link_to '[delete]', comment_path(comment), :class => 'discreet', :method => 'delete', :confirm => 'Are you sure?' %>
+<% end %>
+<br/>
+<%= preserve_breaks comment.text %>

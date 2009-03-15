@@ -1,0 +1,28 @@
+<div class="note">
+  <div class="note-heading">
+    <div class="note-timestamp">
+      posted <%= note.created_at.to_s %>
+      <% if note.group %>
+        by <%= link_to(note.person.name, note.person) rescue '?' %>
+      <% end %>
+    </div>
+    <%= link_to h(note.title), note %>
+    <% if @logged_in.can_edit?(note) %>
+      <%= link_to '[edit]', edit_note_path(note), :class => 'discreet' %>
+      <%= link_to '[delete]', note_path(note), :class => 'discreet', :confirm => 'Are you sure?', :method => 'delete' %>
+    <% end %>
+  </div>
+
+  <div class="note-body"><%= white_list note.body %></div>
+
+  <div class="note-comments">
+    <div class="comment-summary">
+      <%= render :partial => 'comments/comment_summary', :locals => {:object => note} %>
+    </div>
+    <p>
+      <%= link_to image_tag('comment.gif', :alt => 'Comments', :class => 'icon'), note %>
+      <%= link_to 'Add/Read Comments', note %>
+    </p>
+  </div>
+</div>
+<br/>

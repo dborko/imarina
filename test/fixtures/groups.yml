@@ -1,0 +1,107 @@
+# == Schema Information
+#
+# Table name: groups
+#
+#  id                        :integer       not null, primary key
+#  name                      :string(100)   
+#  description               :text          
+#  meets                     :string(100)   
+#  location                  :string(100)   
+#  directions                :text          
+#  other_notes               :text          
+#  category                  :string(50)    
+#  creator_id                :integer       
+#  private                   :boolean       
+#  address                   :string(255)   
+#  members_send              :boolean       default(TRUE)
+#  leader_id                 :integer       
+#  updated_at                :datetime      
+#  hidden                    :boolean       
+#  approved                  :boolean       
+#  link_code                 :string(255)   
+#  parents_of                :integer       
+#  site_id                   :integer       
+#  blog                      :boolean       default(TRUE)
+#  email                     :boolean       default(TRUE)
+#  prayer                    :boolean       default(TRUE)
+#  attendance                :boolean       default(TRUE)
+#  legacy_id                 :integer       
+#  gcal_private_link         :string(255)   
+#  approval_required_to_join :boolean       default(TRUE)
+#  pictures                  :boolean       default(TRUE)
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+dock1:
+  site_id: 1
+  id: 1
+  name: Sail 30 feet and up
+  creator_id: 1
+  category: Docks
+  hidden: false
+  private: false
+  approved: true
+
+dock2:
+  site_id: 1
+  id: 2
+  name: Sail 20 to 30 feet
+  creator_id: 1
+  category: Docks
+  hidden: false
+  private: false
+  approved: true
+
+dock3:
+  site_id: 1
+  id: 3
+  name: Day Sailers
+  creator_id: 1
+  category: Docks
+  hidden: false
+  private: false
+  approved: true 
+
+dock4:
+  site_id: 1
+  id: 4
+  name: Power 30 feet and up
+  creator_id: 1
+  category: Docks
+  hidden: false
+  private: false
+  approved: true
+
+dock5:
+  site_id: 1
+  id: 5
+  name: Power 20 to 30 feet
+  creator_id: 1
+  category: Docks
+  hidden: false
+  private: false
+  approved: true
+ 
+dock6:
+  site_id: 1
+  id: 6
+  name: Power under 20
+  creator_id: 1
+  category: Docks
+  hidden: false
+  private: false
+  approved: true
+
+
+publications:
+  site_id: 1
+  id: 7
+  name: Publications
+  description: People who wish to be notified when new publications become available on the website.
+  category: Subscription
+  address: publications
+  members_send: false
+  hidden: true
+  approved: true
+
+

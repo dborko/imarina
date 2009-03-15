@@ -1,0 +1,14 @@
+<% form_for @person do |form| %>
+  <%= hidden_field_tag :anchor, 'access' %>
+    
+  <p>
+    <% if (attributes = @person.access_attributes).any? %>
+      <% attributes.each do |attribute| %>
+        <%= form.check_box attribute %> <%= form.label attribute, nil, :class => 'inline' %><br/>
+      <% end %>
+    <% else %>
+      <em>No additional access options available at this time.</em>
+    <% end %>
+  </p>
+  <p><%= submit_tag 'Save Access' %></p>
+<% end %>

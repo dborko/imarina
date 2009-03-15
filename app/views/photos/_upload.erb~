@@ -1,0 +1,31 @@
+
+<% if Setting.get(:features, :ots) %>
+<p>
+  <% form_tag url, :multipart => true, :method => 'put' do %>
+    <%= render :partial => 'photo_fields' %>
+    <br/>
+    <strong>By clicking the button below, you certify that this photo is appropriate and not offensive to others.</strong><br/>
+    <input type="submit" value="Upload <%= name %>" class="submit">
+    <% if defined? delete and delete %>
+      <br/>
+      <%= link_to "Remove #{name}", url, :method => 'delete', :confirm => 'Are you sure?' %>
+    <% end %>
+  <% end %>
+</p>
+
+<% else %>
+
+<p>
+  <% form_tag url, :multipart => true, :method => 'put' do %>
+    <%= render :partial => 'photo_fields' %>
+    <br/>
+    <strong>By clicking the button below, you certify that this photo is appropriate and not offensive to others.</strong><br/>
+    <input type="submit" value="Upload Photo" class="submit">
+    <% if defined? delete and delete %>
+      <br/>
+      <%= link_to "Remove #{name}", url, :method => 'delete', :confirm => 'Are you sure?' %>
+    <% end %>
+  <% end %>
+</p>
+
+<%end %>

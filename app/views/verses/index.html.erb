@@ -1,0 +1,26 @@
+<h1>Verses</h1>
+
+<%= render :partial => 'shares/subnav' %>
+
+<p>Share your favorite Bible verses with the <%= Setting.get(:name, :church) %> family.</p>
+
+<%= render :partial => 'add_verse' %>
+
+<% content_for :sidebar do %>
+  <h2>Tags</h2>
+  <div class="tag-cloud">
+    <% tag_cloud @tags, %w(size1 size2 size3 size4) do |tag, css_class| %>
+      <%= link_to tag.name, tag, :class => css_class %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= will_paginate @verses %>
+
+<% if @verses.any? %>
+  <%= render :partial => @verses %>
+<% else %>
+  <p><em>No verses yet!</em></p>
+<% end %>
+
+<%= will_paginate @verses %>

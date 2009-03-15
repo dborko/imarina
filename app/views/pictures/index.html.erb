@@ -1,0 +1,25 @@
+<% content_for :subnav do %>
+  <li><%= link_to 'Albums', albums_path %></li>
+  <% if @logged_in.can_edit? @album %>
+    <li><%= link_to 'Edit', edit_album_path(@album) %></li>
+    <li><%= link_to 'Delete', album_path(@album), :method => 'delete', :confirm => 'Are you sure? Deleting this album will also delete all its pictures!' %></li>
+  <% end %>
+<% end %>
+
+<h1><%=h @album.name %> <% if @album.group %>in <%= link_to h(@album.group.name), @album.group %><% end %></h1>
+
+<p><%=h @album.description %></p>
+
+<%= render :partial => 'upload' %>
+
+<%= will_paginate @pictures %>
+
+<% @pictures.each do |picture| %>
+  <div class="picture">
+    <%= link_to image_tag(medium_picture_path(picture), :alt => 'click to enlarge'),
+      [@album, picture], :title => 'click to enlarge' %>
+  </div>
+<% end %>
+<br clear="both"/>
+
+<%= will_paginate @pictures %>

@@ -1,0 +1,298 @@
+--- 
+Contact: 
+  Tech Support Email: 
+    format: string
+    value: tech@imarina.net
+    description: Email to contact for technical help with the site.
+    global: true
+  Church Email: 
+    format: string
+    value: info@imarina.net
+    description: Visible in some places on site
+  Church Office Phone: 
+    format: string
+    value: 
+    description: Phone number for the church office
+  Bug Notification Email: 
+    format: string
+    value: tech@imarina.net
+    description: Email address to send bug reports to
+    global: true
+  Birthday Verification Email: 
+    format: string
+    value: admin@imarina.net
+    description: Email sent when someone requests verification via birthday (shouldn't be blank)
+  Send Email Changes To: 
+    format: string
+    value: admin@imarina.net
+    description: Email sent when someone changes their email address (can be blank for no email)
+  Church Address: 
+    format: string
+    value: 8144 Fiesta Street Brooksville,FL 34613
+    description: Visible on Terms of Use
+  Send Updates To: 
+    format: string
+    value: 
+    description: Email sent when someone updates their profile (can be blank for no email)
+Name: 
+  Church: 
+    format: string
+    value: Imarina dot Net
+    description: The name of the church
+  Site: 
+    format: string
+    value: Imarina dot Net
+    description: The name of the member portion of this website
+  Slogan: 
+    format: string
+    value: a social networking site for sailors/boaters
+    description: Slogan displayed at top of every page.
+Features: 
+  ots:
+    format: boolean
+    value: false
+    description: Use to trigger custom or Off The Shelf Code.
+  Non Church:
+    format: boolean
+    value: true
+    description: Use to screen out church specific content. 
+  Twitter Account:
+    format: string
+    value:
+    description: If Twitter Integration is enabled, tell your users the account name here.
+  Multisite: 
+    format: boolean
+    value: false
+    description: When enabled, this instance can handle multiple sites, based on domain name.
+    global: true
+  SSL: 
+    format: boolean
+    value: false
+    description: If you have SSL setup, you may turn on this feature, which will make the login page encrypted. If not, some advanced JavaScript hashing is enabled to make sure the users' passwords aren't being sent in plaintext.
+    global: true
+  Notes: 
+    format: boolean
+    value: true
+    description: Enable Notes sharing (blog).
+  Sign Up: 
+    format: boolean
+    value: true
+    description: Enable the ability for people to sign up for the site. Configure aproval email address below.
+  Banner Message: 
+    format: string
+    value: 
+    description: Message to display across top of all pages on site (HTML), like an alert
+  Blog: 
+    format: boolean
+    value: true
+    description: Enable Personal blog.
+  Groups: 
+    format: boolean
+    value: true
+    description: Enable Groups.
+  Pictures: 
+    format: boolean
+    value: true
+    description: Enable Picture sharing.
+  Friends: 
+    format: boolean
+    value: true
+    description: Enable MySpace-style mutual friendships (confirmed via email)
+  Content Management System: 
+    format: boolean
+    value: true
+    description: Enable "Pages" - Use OneBody to host your website.
+  Sign Up Approval Email: 
+    format: string
+    value: 
+    description: Where to send pending sign up requests (must be admin; leave blank to auto-approve).
+  Sidebar Group Category: 
+    format: string
+    value: docks
+    description: People in mutual groups of this category will be displayed on the user's profile sidebar.
+  Publications: 
+    format: boolean
+    value: true
+    description: Enable Publications.
+  Sidebar Group Heading: 
+    format: string
+    value: Dockmates
+    description: Heading to show above people in mutual groups (see above setting)
+  Verses: 
+    format: boolean
+    value: false
+    description: Enable Verse sharing.
+  Prayers: 
+    format: boolean
+    value: false
+    description: Enable Prayer Requests.
+  Testimony: 
+    format: boolean
+    value: false
+    description: Enable Testimonies.
+  Recipes: 
+    format: boolean
+    value: true
+    description: Enable Recipe sharing.
+  Updates Must Be Approved:
+    format: boolean
+    value: true
+    description: If enabled, all changes to a user's "basic" information (phone, address, etc.) will await approval from an admin before being applied.
+  Edit Legacy Ids:
+    format: boolean
+    value: false
+    description: If enabled, will allow admin access to manually modify Family and Person legacy ids.
+    global: true
+  Service:
+    format: boolean
+    value: false
+    description: If enabled, admin users can track indviduals' service in areas of the community.
+  Custom Person Type:
+    format: boolean
+    value: false
+    description: If enabled, admins can specify a custom type along the lines of Elder, Deacon, etc.
+  Custom Person Fields:
+    format: list
+    value:
+    description: Add custom field names, one per line. Including the word "date" (or "Date") makes a date field. Append an asterisk (*) to make the field visible and editable by users.
+Services: 
+  Yahoo: 
+    format: string
+    value: 
+    description: Your Yahoo API key - https://developer.yahoo.com/wsregapp/index.php
+    global: true
+  Analytics: 
+    format: string
+    value: 
+    description: If you use Google Analytics or some other JavaScript-based stats service, put the code here. It will be inserted at the bottom of every page.
+    global: true
+Access: 
+  Super Admins: 
+    format: list
+    value: |
+      --- 
+      - doug@flasailor.com
+
+    description: Email addresses of people who are the super admins
+URL: 
+  Visitor: 
+    format: string
+    value: http://imarina.org
+    description: URL for main website (visitors will be pointed here if they happen across the member site.)
+  Site: 
+    format: string
+    value: http://imarina.net/
+    description: URL for this site (including the trailing slash please)
+    hidden: true
+  News: 
+    format: string
+    value: 
+    description: URL for church news (people will be pointed here for news)
+  News RSS: 
+    format: string
+    value: 
+    description: URL for church news RSS feed (news feed will be polled periodically and headlines displayed across the top of the page)
+System: 
+  Suffixes: 
+    format: list
+    value: |
+      --- 
+      - Jr.
+      - Sr.
+      - II
+      - III
+
+    description: ""
+  Time Zone: 
+    format: string
+    value: Central Time (US & Canada)
+    description: Set to properly display dates and times on the site.
+Formats: 
+  Full Date and Time: 
+    format: string
+    value: "%m/%d/%Y %I:%M %p"
+    description: Format for displaying date and time.
+  Time: 
+    format: string
+    value: "%I:%M %p"
+    description: Format for displaying time.
+  Phone: 
+    format: string
+    value: (ddd) ddd-dddd
+    description: Format for displaying phone numbers (landlines). Use 'd' for digits.
+  Mobile Phone: 
+    format: string
+    value: (ddd) ddd-dddd
+    description: Format for displaying mobile phone numbers. Use 'd' for digits.
+  Date: 
+    format: string
+    value: "%m/%d/%Y"
+    description: Format for displaying date.
+  Date Without Year: 
+    format: string
+    value: "%m/%d"
+    description: Format for displaying date without a year, e.g. birthdays.
+Appearance: 
+  Logo: 
+    format: string
+    value: logo.png
+    description: Filename of logo (in public/images/ directory).
+    hidden: true
+  Public Theme: 
+    format: string
+    value: imarina
+    description: Name of selected theme (from themes/ directory) for the public CMS site.
+  Show Subheading: 
+    format: boolean
+    value: true
+    description: Under the site title/logo, display the site address and slogan.
+  Theme: 
+    format: string
+    value: imarina
+    description: Name of selected theme (from themes/ directory).
+Privacy: 
+  Allow Unencrypted Logins: 
+    format: boolean
+    value: true
+    description: Logins are secured with public/private RSA encryption using JavaScript. Check this box to allow fallback for mobile phones and other browsers that are having trouble signing in.
+  Relay All Email: 
+    format: boolean
+    value: true
+    description: If enabled, all email addresses are masked by relaying replies back through the site. If disabled, people who have their email address shared will have their address revealed in outgoing messages.
+  Max Sign in Attempts: 
+    format: string
+    value: 10
+    description: Maximum number of signin failures in a 15-minute period before account is locked out. (Account is automatically unlocked after 15 minutes.)
+  Share Address by Default:
+    format: boolean
+    value: false
+    description: If enabled, new users will have their home address shared with other site members.
+  Share Home Phone by Default:
+    format: boolean
+    value: false
+    description: If enabled, new users will have their home phone shared with other site members.
+  Share Mobile Phone by Default:
+    format: boolean
+    value: false
+    description: If enabled, new users will have their mobile phones shared with other site members.
+  Share Work Phone by Default:
+    format: boolean
+    value: false
+    description: If enabled, new users will have their work phones shared with other site members.;
+  Share Fax by Default:
+    format: boolean
+    value: false
+    description: If enabled, new users will have their fax shared with other site members.
+  Share Email by Default:
+    format: boolean
+    value: false
+    description: If enabled, new users will have their email address shared with other site members.
+  Share Birthday by Default:
+    format: boolean
+    value: true
+    description: If enabled, new users will have their birthday shared with other site members.
+  Share Anniversary by Default:
+    format: boolean
+    value: true
+    description: If enabled, new users will have their anniversary shared with other site members.
+

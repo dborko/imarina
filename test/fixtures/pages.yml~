@@ -1,0 +1,96 @@
+# == Schema Information
+#
+# Table name: pages
+#
+#  id         :integer       not null, primary key
+#  slug       :string(255)   
+#  title      :string(255)   
+#  body       :text          
+#  parent_id  :integer       
+#  path       :string(255)   
+#  published  :boolean       default(TRUE)
+#  site_id    :integer       
+#  created_at :datetime      
+#  updated_at :datetime      
+#  navigation :boolean       default(TRUE)
+#  system     :boolean       
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+home:
+  slug: home
+  title: Home
+  body: This is the homepage. Visit /pages/admin to edit.
+  path: home
+  site_id: 1
+
+shipstore:
+  slug: shipstore
+  title: Ships Store
+  body: This is the home page for the Ships Store.
+  path: shipstore
+  site_id: 1
+
+books:
+  slug: books
+  title: Books
+  body: This is the Book Section of the Ships Store.
+  parent: shipstore
+  path: shipstore/books
+  site_id: 1
+
+mag:
+  slug: mag
+  title: Magazines
+  body: This is the Magazine Section of the Ships Store.
+  parent: shipstore
+  path: shipstore/mag
+  site_id: 1
+
+hard:
+  slug: hard
+  title: Hardware
+  body: This is the Hardware Section of the Ships Store.
+  parent: shipstore
+  path: shipstore/hard
+  site_id: 1
+
+elec:
+  slug: elec
+  title: Electronics
+  body: This is the Electronics Section of the Ships Store.
+  parent: shipstore
+  path: shipstore/elec
+  site_id: 1
+
+nav:
+  slug: nav
+  title: Navigation
+  body: This is the Navigation Section of the Ships Store.
+  parent: shipstore
+  path: shipstore/nav
+  site_id: 1
+
+ed:
+  slug: ed
+  title: Education
+  body:  Education is important.  Sources of Sailing/Boating Education.
+  path: ed
+  site_id: 1
+
+soft:
+  slug: soft
+  title: Software
+  body: Sources of open source software related to Sailing/Boating.
+  path: soft
+  site_id: 1
+
+about:
+  slug: about
+  title: About us
+  body: Two guys in a marina, literally.
+  path: about
+  site_id: 1
+
+

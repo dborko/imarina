@@ -1,0 +1,58 @@
+# == Schema Information
+#
+# Table name: families
+#
+#  id                 :integer       not null, primary key
+#  legacy_id          :integer       
+#  name               :string(255)   
+#  last_name          :string(255)   
+#  suffix             :string(25)    
+#  address1           :string(255)   
+#  address2           :string(255)   
+#  city               :string(255)   
+#  state              :string(10)    
+#  zip                :string(10)    
+#  home_phone         :string(25)    
+#  email              :string(255)   
+#  latitude           :float         
+#  longitude          :float         
+#  share_address      :boolean       default(TRUE)
+#  share_mobile_phone :boolean       
+#  share_work_phone   :boolean       
+#  share_fax          :boolean       
+#  share_email        :boolean       
+#  share_birthday     :boolean       default(TRUE)
+#  share_anniversary  :boolean       default(TRUE)
+#  updated_at         :datetime      
+#  wall_enabled       :boolean       default(TRUE)
+#  visible            :boolean       default(TRUE)
+#  share_activity     :boolean       default(TRUE)
+#  site_id            :integer       
+#  share_home_phone   :boolean       default(TRUE)
+#  deleted            :boolean       
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+borko:
+  site_id: 1
+  id: 1
+  name: Doug
+  last_name: Borko
+  address1: ...
+  city: Brooksville
+  state: FL
+  zip: 34613
+  home_phone: 3523972870
+  wall_enabled: true
+
+smith:
+  site_id: 1
+  id: 2
+  name: Mike
+  last_name: Smith
+  address1: ...
+  city: Brooksville
+  state: FL
+  zip: 34613
+  home_phone: 3525551212
+  wall_enabled: true

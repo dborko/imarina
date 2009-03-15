@@ -1,0 +1,24 @@
+<h1>Sharing with <%= link_to h(@group.name), @group %></h1>
+
+<% form_for :membership, @membership, :url => group_membership_privacy_path(@group, @membership), :html => {:method => 'put'} do |form| %>
+  <%= form.error_messages %>
+  <p>The following items are visible to everyone (<%= link_to 'change here', privacy_path %>):</p>
+  <ul>
+    <% @visible_to_everyone.each do |attribute| %>
+      <li><%= attribute.humanize %></li>
+    <% end %>
+  </ul>
+  
+  <p>The following items may be shared with other members of <%=h @group.name %>:</p>
+  <table>
+    <tr><th>Detail</th><th>Visible</th><th>Hidden</th></tr>
+    <% @sharable_with_group.each do |attribute| %>
+      <tr>
+        <td><%= attribute.humanize %></td>
+        <td><%= form.radio_button "share_#{attribute}", true,  :class => 'checkbox' %></td>
+        <td><%= form.radio_button "share_#{attribute}", false, :class => 'checkbox' %></td>
+      </tr>
+    <% end %>
+  </table>
+  <p><%= form.submit 'Save Changes' %></p>
+<% end %>

@@ -1,0 +1,33 @@
+RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
+require File.join(File.dirname(__FILE__), 'boot')
+
+unless File.exist?(config_filename = Rails.root + '/config/database.yml')
+  require 'fileutils'
+  FileUtils.cp(config_filename + '.example', config_filename)
+end
+
+Rails::Initializer.run do |config|
+  config.action_controller.session_store = :active_record_store
+  config.action_controller.cache_store = :file_store, Rails.root + '/cache'
+  config.log_path = File.join(File.dirname(__FILE__), "../log/#{RAILS_ENV}.log")
+  config.database_configuration_file = File.expand_path(File.join(File.dirname(__FILE__), 'database.yml'))
+  config.load_paths << Rails.root + '/app/sweepers'
+  config.plugin_paths << Rails.root + '/plugins'
+  config.time_zone = 'UTC'
+  # dependencies 
+  config.gem 'liquid'
+  config.gem 'pdf-writer', :lib => 'pdf/writer'
+  config.gem 'highline'
+  config.gem 'mini_magick'
+  config.gem 'twitter'
+  config.gem 'xmpp4r'
+  config.gem 'mislav-will_paginate',            :source => 'http://gems.github.com', :lib => 'will_paginate', :version => '~> 2.3.0'
+  config.gem 'seven1m-acts_as_scoped_globally', :source => 'http://gems.github.com', :lib => 'acts_as_scoped_globally'
+  config.gem 'seven1m-acts_as_photo',           :source => 'http://gems.github.com', :lib => 'acts_as_photo'
+  config.gem 'chronic'
+  config.gem 'javan-whenever',                  :source => 'http://gems.github.com', :lib => 'whenever'
+end
+
+PHONE_HOME_FOR_VERSION_INFO = true unless defined? PHONE_HOME_FOR_VERSION_INFO
+
+(Setting.update_all if Setting.table_exists?) rescue nil

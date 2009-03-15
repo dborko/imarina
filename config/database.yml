@@ -1,0 +1,9 @@
+development:
+  adapter: mysql
+  database: prod_imarina2009
+  username: dockmaster
+  password: mastercontrol
+
+
+
+

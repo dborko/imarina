@@ -1,0 +1,7 @@
+<% form_for @family do |form| %>
+  <%= form.error_messages %>
+  <p>
+    <%= render :partial => 'form_fields', :locals => {:form => form} %>
+    <%= submit_tag 'Save Family' %>
+  </p>
+<% end %>

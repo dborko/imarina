@@ -1,0 +1,16 @@
+<% controller ||= object.class.name.pluralize.downcase %>
+<% if object.tags.any? %>
+  <% object.tags.each do |tag| %>
+    <%= link_to h(tag.name), tag %>
+    <% if params[:controller] == controller %>
+      <% if controller == 'verses' %>
+        <% url = verse_path(:id => object, :remove_tag => tag.name) %>
+      <% elsif controller == 'recipes' %>
+        <% url = recipe_path(:id => object, :remove_tag => tag.name) %>
+      <% end %>
+      <%= link_to 'x', url, :title => 'Delete this tag.', :class => 'discreet', :style => 'margin-left:-5px;', :method => 'put', :confirm => 'Are you sure you want to delete this tag?' %>
+    <% end %>
+  <% end %>
+<% else %>
+  <em>no tags</em>
+<% end %>
