@@ -7,9 +7,9 @@ test:
 
 production:
   pop:
-    host: localhost
-    username: onebody
-    password: onebody
+    host: 
+    username: 
+    password: 
   smtp:
     address: localhost
     domain: imarina.net

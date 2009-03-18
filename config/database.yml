@@ -1,9 +1,13 @@
 development:
   adapter: mysql
-  database: prod_imarina2009
-  username: dockmaster
-  password: mastercontrol
+  database: prod_imlive
+  username: imlive
+  password: aH2009a1
 
-
+production:
+  adapter: mysql
+  database: prod_imlive
+  username: imlive
+  password: aH2009a1
 
 
